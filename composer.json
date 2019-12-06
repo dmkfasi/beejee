@@ -4,6 +4,7 @@
 		"twbs/bootstrap": "^4.4",
 		"aura/view": "^2.3",
 		"aura/router": "^3.1",
-		"zendframework/zend-diactoros": "^2.2"
+		"zendframework/zend-diactoros": "^2.2",
+		"aura/dispatcher": "^2.0"
 	}
 }
