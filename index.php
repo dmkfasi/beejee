@@ -1,15 +1,11 @@
 <?php
 
-require_once 'conf/config.php';
-require_once 'vendor/autoload.php';
-
-use SimpleCrud\Database;
-
-$pdo = new PDO(DSN, null, null);
-
-$db = new Database($pdo);
+// Bootstrap everything in use
+require_once 'lib/bootstrap.php';
 
 //To get any table, use magic properties, they will be instantiated on demand:
-$task = $db->task;
+$tasks = $db->task;
 
-var_dump($task);
+$view->setData($tasks);
+
+echo $view->__invoke();
