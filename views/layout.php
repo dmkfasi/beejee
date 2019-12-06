@@ -14,10 +14,10 @@
 		<div class="container pt-4">
 			<div class="row">
 				<div class="col text-left">
-					<a href="/add/" class="btn btn-primary">Add a Task</a>
+					<a href="/task/add" class="btn btn-primary">Add a Task</a>
 				</div>
 				<div class="col text-right">
-					<a href="/login/" class="btn btn-primary">Login</a>
+					<a href="/user/login" class="btn btn-primary">Login</a>
 				</div>
 			</div>
 		</div>
