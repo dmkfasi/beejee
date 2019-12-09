@@ -18,13 +18,17 @@ $map = $router->getMap();
 // add a route to the map, and a handler for it
 
 // Map default URI to the Task List
-$map->get('home', '/', function ($map) {
-});
+$map->get('task', '{/controller,action,id}')
+    ->defaults([
+        'controller' => 'task',
+        'action' => 'list',
+        'id' => null,
+    ]);
 
 // Resource based router
 $map->attach('task', '/task', function ($map) {
-	$map->get('browse', '');
-	$map->get('add', '');
+    $map->get('list', '/{page}');
+    $map->get('add', '');
 	$map->post('save', '');
 	$map->get('read', '/{id}');
 	$map->patch('edit', '/{id}');
@@ -34,23 +38,36 @@ $map->attach('task', '/task', function ($map) {
 // get the route matcher from the container ...
 $matcher = $router->getMatcher();
 
-function taskread() {}
-
 // .. and try to match the request to a route.
 $route = $matcher->match($request);
 if (! $route) {
-	$view->setView('404');
-	$view->__invoke();
-	exit;
-}
-
-// add route attributes to the request
-foreach ($route->attributes as $key => $val) {
-    $request = $request->withAttribute($key, $val);
+    // Display neat error page
+	$view = registry::getService('view');
+	$view->setView('error_404');
+	die($view->__invoke());
 }
 
 // dispatch the request to the route handler.
 // (consider using https://github.com/auraphp/Aura.Dispatcher
 // in place of the one callable below.)
-$callable = $route->handler;
-$response = $callable($request, $view);
+$actionClass = ucfirst($route->handler) . 'Controller';
+$classFile = "app/{$actionClass}.php";
+
+// Checks and loads up controller requested
+if (is_readable($classFile)) {
+	require_once $classFile;
+
+	// Instantiates controller requested
+	$object = new $actionClass();
+	$method = $route->attributes['action'];
+
+	// Calls a method specified in HTTP request
+	$contents = $object->$method();
+
+	// Spit out contents from the controller
+	header('Content-type: text/html; encoding=utf-8');
+	header('Content-Length: ' . mb_strlen($contents, 'UTF-8'));
+	die($contents);
+} else {
+	throw new \Exception('No application specified found');
+}
