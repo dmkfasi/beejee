@@ -14,8 +14,8 @@
 		<div class="container pt-4">
 			<div class="row">
 				<div class="col text-left">
-					<a href="/task/add" class="btn btn-primary">Add a Task</a>
-					<a href="/task/list" class="btn btn-primary">Task List</a>
+					<a href="<?=url('task.create')?>" class="btn btn-primary">Add a Task</a>
+					<a href="<?=url('task.index')?>" class="btn btn-primary">Task List</a>
 				</div>
 				<div class="col text-right">
 					<a href="/user/login" class="btn btn-primary">Login</a>
