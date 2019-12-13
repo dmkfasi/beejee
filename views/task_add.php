@@ -1,7 +1,7 @@
 <h3>Add a new Task</h3>
 
-<form method="post" action="/task/save/" class="needs-validation">
-
+<form method="post" action="<?=url('task.store')?>" class="needs-validation">
+    <input type="hidden" name="csrf_token" value="<?= csrf_token(); ?>">
 	<p>Please, fill in all the fields.</p>
 
 	<div class="form-group">
