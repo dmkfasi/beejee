@@ -1,5 +1,30 @@
 <h3>Task list</h3>
 
+<?php
+$pagination = $this->pagination;
+?>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+<?php
+if (is_null($pagination['previousPage'])) {
+    $prevDisabled = 'disabled';
+}
+
+if (is_null($pagination['nextPage'])) {
+    $nextDisabled = 'disabled';
+}
+?>
+    <li class="page-item <?=$prevDisabled?>"><a class="page-link" href="#">Previous</a></li>
+<?php 
+for ($i = 1; $i <= $pagination['totalPages']; $i++) {
+    $active = ($pagination['currentPage'] == $i) ? 'active' : '';
+    echo '<li class="page-item ' . $active . '"><a class="page-link" href="' . url('task', [ 'id' => $i ]) . '">' . $i . '</a></li>';
+}
+?>
+    <li class="page-item <?=$nextDisabled?>"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+
 <table class="table">
   <thead>
     <tr>
@@ -11,20 +36,17 @@
   </thead>
   <tbody>
 <?php
-foreach ($this as $task) {
-    $name = $this->escape()->html($task['userName']);
-    $email = $this->escape()->html($task['userEmail']);
-    $desc = $this->escape()->html($task['description']);
-    $done = (isset($task['isDone'])) ? 'Done' : 'Not done yet';
+foreach ($this->tasks as $task) {
+    $done   = ($task->isDone == 1) ? 'Done' : 'Not done yet';
 
 printf('
-		<tr>
+	<tr>
       <th scope="row">%s</th>
       <td>%s</td>
       <td>%s</td>
       <td>%s</td>
     </tr>
-', $name, $email, $desc, $done);
+', $task->username, $task->email, $task->description, $done);
 
 }
 ?>
