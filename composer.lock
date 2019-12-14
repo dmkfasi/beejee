@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b201145893fcd596227add3f2b5023bd",
+    "content-hash": "456bdf65b3e19569fa0b876220c67a73",
     "packages": [
         {
             "name": "atlas/pdo",
@@ -113,6 +113,66 @@
                 "update"
             ],
             "time": "2018-08-12T14:19:01+00:00"
+        },
+        {
+            "name": "aura/auth",
+            "version": "4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/auraphp/Aura.Auth.git",
+                "reference": "71c03d4f75050fde70bff6b47391c7702b340b9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/auraphp/Aura.Auth/zipball/71c03d4f75050fde70bff6b47391c7702b340b9e",
+                "reference": "71c03d4f75050fde70bff6b47391c7702b340b9e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "acclimate/container": "^2",
+                "aura/di": "~4.0",
+                "phpunit/phpunit": "~7"
+            },
+            "suggest": {
+                "ext/imap": "For IMAP/POP/NNTP integration.",
+                "ext/ldap": "For LDAP integration."
+            },
+            "type": "library",
+            "extra": {
+                "aura": {
+                    "type": "library",
+                    "config": {
+                        "common": "Aura\\Auth\\_Config\\Common"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Aura\\Auth\\": "src/",
+                    "Aura\\Auth\\_Config\\": "config/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Aura.Auth Contributors",
+                    "homepage": "https://github.com/auraphp/Aura.Auth/contributors"
+                }
+            ],
+            "description": "Provides a unified interface to authenticate a user with local or remote authentication systems.",
+            "homepage": "https://github.com/auraphp/Aura.Auth",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "authenticate"
+            ],
+            "time": "2019-12-04T20:30:37+00:00"
         },
         {
             "name": "aura/view",
