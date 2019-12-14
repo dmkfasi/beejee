@@ -1,31 +1,8 @@
 <h3>Task list</h3>
 
-<?php
-$pagination = $this->pagination;
-?>
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-<?php
-if (is_null($pagination['previousPage'])) {
-    $prevDisabled = 'disabled';
-}
+<div class="alert alert-primary" role="alert"><?=Controller::getSessionMessage('task_save_message')?></div>
 
-if (is_null($pagination['nextPage'])) {
-    $nextDisabled = 'disabled';
-}
-?>
-    <li class="page-item <?=$prevDisabled?>"><a class="page-link" href="#">Previous</a></li>
-<?php 
-for ($i = 1; $i <= $pagination['totalPages']; $i++) {
-    $active = ($pagination['currentPage'] == $i) ? 'active' : '';
-    echo '<li class="page-item ' . $active . '"><a class="page-link" href="' . url('task', [ 'id' => $i ]) . '">' . $i . '</a></li>';
-}
-?>
-    <li class="page-item <?=$nextDisabled?>"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
-
-<table class="table">
+<table class="table table-striped table-bordered" id="taskList">
   <thead>
     <tr>
       <th scope="col">User Name</th>
@@ -52,3 +29,18 @@ printf('
 ?>
   </tbody>
 </table>
+
+<script>
+$(document).ready(function () {
+    $('#taskList').DataTable({
+        "pageLength": 3,
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
+        });
+	  $('.dataTables_length').addClass('bs-select');
+	});
+</script>
