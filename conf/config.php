@@ -1,5 +1,5 @@
 <?php
 
-const DB_DSN = 'sqlite:conf/db.sqlite';
-const DB_USER = null;
-const DB_PASS = null;
+const DB_DSN = 'mysql:host=localhost;dbname=beejee';
+const DB_USER = 'beejee';
+const DB_PASS = 'beejee';
