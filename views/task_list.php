@@ -16,14 +16,22 @@
 foreach ($this->tasks as $task) {
     $done   = ($task->isDone == 1) ? 'Done' : 'Not done yet';
 
+    // Setup 'done' checkbox for authenticated user
+    if ($this->user_auth()->isValid() &&
+        $task->isDone == 0) {
+        $doneToggle = '<a href="#" class="btn btn-outline-info completeButton" data-id="' . $task->id . '">Done</a>';
+    } else {
+        $doneToggle = '';
+    }
+
 printf('
 	<tr>
       <th scope="row">%s</th>
       <td>%s</td>
       <td>%s</td>
-      <td>%s</td>
+      <td>%s&nbsp;&nbsp;%s</td>
     </tr>
-', $task->username, $task->email, $task->description, $done);
+', $task->username, $task->email, $task->description, $done, $doneToggle);
 
 }
 ?>
@@ -32,7 +40,7 @@ printf('
 
 <script>
 $(document).ready(function () {
-    $('#taskList').DataTable({
+	$('#taskList').DataTable({
         "pageLength": 3,
         "paging": true,
         "lengthChange": false,
@@ -41,6 +49,32 @@ $(document).ready(function () {
         "info": true,
         "autoWidth": false
         });
-	  $('.dataTables_length').addClass('bs-select');
+
+	$('.dataTables_length').addClass('bs-select');
+});
+
+$(document).ready(function () {
+	$('a.completeButton').on('click', function(e) {
+	    var taskId = $(this).data('id');
+
+	    console.log(taskId);
+	    $.ajax({
+			url: '<?=url('setDone')?>',
+			type: 'POST',
+			data: {
+				id: taskId,
+			},
+
+			success: function (response) {
+                // ajax success callback
+                location.reload();
+            },
+
+            error: function (response) {
+                // ajax error callback
+                alert('Unable to complete the Task ' + taskId);
+            },
+		});
 	});
+});
 </script>
