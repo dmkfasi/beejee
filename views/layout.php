@@ -7,8 +7,7 @@
 
     <!-- Bootstrap -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">    <!-- Bootstrap core JavaScript-->
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!--  DataTables -->
 	<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
@@ -27,7 +26,7 @@
 					<?=Controller::getSessionMessage('user_login_message', false)?>
 				</div>
 				<div class="col text-right">
-					<?php if (\Aura\Auth\Status::VALID === $this->user_auth()->getStatus()) {
+					<?php if ($this->user_auth()->isValid()) {
 					   printf('<a href="%s" class="btn btn-primary">%s</a>', url('user.logout'), 'Logout');
 					} else {
 					   printf('<a href="%s" class="btn btn-primary">%s</a>', url('user.login'), 'Login');
