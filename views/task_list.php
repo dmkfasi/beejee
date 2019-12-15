@@ -51,9 +51,7 @@ $(document).ready(function () {
         });
 
 	$('.dataTables_length').addClass('bs-select');
-});
 
-$(document).ready(function () {
 	$('a.completeButton').on('click', function(e) {
 	    var taskId = $(this).data('id');
 
