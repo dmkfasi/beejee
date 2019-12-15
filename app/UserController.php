@@ -52,8 +52,8 @@ class UserController extends Controller
         redirect(url('/'), 301);
     }
 
-    public function getStatus()
+    public function isValid()
     {
-        return $this->auth->getStatus();
+        return $this->auth->isValid();
     }
 }
