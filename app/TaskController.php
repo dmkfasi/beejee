@@ -28,19 +28,15 @@ class TaskController extends Controller
     public function store(): void
     {
         // TODO Extra validation and sanitization
-        list(
-            $id,
-            $username,
-            $email,
-            $description,
-            $isDone
-        ) = input()->all([
-            'id',
+        $values = input()->all([
             'username',
             'email',
             'description',
-            'isDone',
         ]);
+
+        $username       = $values['username'];
+        $email          = $values['email'];
+        $description    = $values['description'];
 
         // Save only tasks with proper data handed over
         if (isset($username) && isset($email)) {
@@ -53,6 +49,7 @@ class TaskController extends Controller
                 $task->description  = htmlspecialchars($description);
 
                 // Persist object
+                // TODO Handle errors
                 $task->save();
 
                 // Send a message with HTTP redirect
