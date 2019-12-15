@@ -7,8 +7,12 @@ use Pecee\SimpleRouter\SimpleRouter;
 
 // Default route as per description
 SimpleRouter::get('/', 'TaskController@index');
+
+
 // Resource controller based route
 SimpleRouter::resource('task', TaskController::class);
+
+SimpleRouter::post('setDone', 'TaskController@setDone')->name('task.setDone');
 
 // User Authentication route
 SimpleRouter::get('/user/login',    'UserController@login')->name('user.login');
