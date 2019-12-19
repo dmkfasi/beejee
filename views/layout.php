@@ -23,7 +23,7 @@
 					<a href="<?=url('task.index')?>" class="btn btn-primary">Task List</a>
 				</div>
 				<div class="col text-center my-auto">
-					<?=Controller::getSessionMessage('user_login_message', false)?>
+					<?=App\Controller::getSessionMessage('user_login_message', false)?>
 				</div>
 				<div class="col text-right">
 					<?php if ($this->user_auth()->isValid()) {

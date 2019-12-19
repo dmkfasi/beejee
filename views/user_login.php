@@ -1,6 +1,6 @@
 <h3>Please login here</h3>
 
-<div class="alert alert-primary" role="alert"><?=Controller::getSessionMessage('user_login_message')?></div>
+<div class="alert alert-primary" role="alert"><?=App\Controller::getSessionMessage('user_login_message')?></div>
 
 <form method="post" action="<?=url('user.auth')?>" class="needs-validation">
     <input type="hidden" name="csrf_token" value="<?= csrf_token(); ?>">
