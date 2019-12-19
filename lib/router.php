@@ -14,6 +14,7 @@ SimpleRouter::get('/', 'TaskController@index');
 SimpleRouter::resource('task', TaskController::class);
 
 SimpleRouter::post('setDone', 'TaskController@setDone')->name('task.setDone');
+SimpleRouter::post('setDescription', 'TaskController@setDescription')->name('task.setDescription');
 
 // User Authentication route
 SimpleRouter::get('/user/login',    'UserController@login')->name('user.login');
