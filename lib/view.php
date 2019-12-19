@@ -7,7 +7,7 @@ $view = $view_factory->newInstance();
 
 $helpers = $view->getHelpers();
 $helpers->set('user_auth', function(){
-    return new UserController;
+    return new App\UserController;
 });
 
 // Main layout for the website

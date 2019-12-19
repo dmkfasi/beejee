@@ -5,9 +5,10 @@ include_once 'vendor/pecee/simple-router/helpers.php';
 
 use Pecee\SimpleRouter\SimpleRouter;
 
+SimpleRouter::setDefaultNamespace('App');
+
 // Default route as per description
 SimpleRouter::get('/', 'TaskController@index');
-
 
 // Resource controller based route
 SimpleRouter::resource('task', TaskController::class);
