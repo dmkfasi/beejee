@@ -1,9 +1,15 @@
 {
-	"require": {
-		"simple-crud/simple-crud": "^7.3",
-		"twbs/bootstrap": "^4.4",
-		"aura/view": "^2.3",
-		"pecee/simple-router": "4.2.0.6",
-		"aura/auth": "^4.0"
+	"require" : {
+		"simple-crud/simple-crud" : "^7.3",
+		"twbs/bootstrap" : "^4.4",
+		"aura/view" : "^2.3",
+		"pecee/simple-router" : "4.2.0.6",
+		"aura/auth" : "^4.0",
+		"ext-pdo_sqlite": "*"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"App\\" : "app"
+		}
 	}
 }
